@@ -1,0 +1,32 @@
+header {
+  background: #1c1a19;
+  position: relative;
+  height: 102px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.logo {
+  position: absolute;
+  width: 269px;
+  height: 61px;
+  left: 27px;
+  top: 21px;
+}
+
+.nav {
+  margin-right: 50px;
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+}
+
+.navButton {
+  color: #fff;
+  font-size: 21px;
+}
+
+.navButton:hover {
+  color: #fdbf5a;
+}
