@@ -1,0 +1,68 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 55px 114px;
+}
+
+h1 {
+  margin-bottom: 57px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 355px;
+}
+
+.submitBtn {
+  text-align: center;
+  vertical-align: middle;
+  height: 60px;
+  background: #fdbf5a;
+  border-radius: 70px;
+  font-size: 25px;
+  margin-bottom: 33px;
+}
+
+.submitBtn:hover {
+  background: #ffa842;
+}
+
+.forgetPsd {
+  color: #828282;
+  align-self: flex-end;
+  margin-bottom: 46px;
+}
+
+.newUser {
+  align-self: center;
+}
+
+.signup {
+  color: #fdbf5a;
+}
+
+input {
+  border-bottom: 2px solid #e4e4e4;
+  margin-bottom: 25px;
+  padding-bottom: 11px;
+  transition: border-bottom-color 200ms;
+}
+
+input:last-of-type {
+  margin-bottom: 13px;
+}
+
+input:hover {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.87);
+}
+
+input:focus {
+  border-bottom-color: #1473e6;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
