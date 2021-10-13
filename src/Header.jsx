@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types"
 import { ReactComponent as Logo } from "./icons/logo.svg";
 import styles from "./Header.module.css";
 
@@ -41,5 +42,9 @@ const Header = (props) => {
     </header>
   );
 };
+
+Header.propTypes = {
+  routeHandler: PropTypes.func
+}
 
 export default Header;

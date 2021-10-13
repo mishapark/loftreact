@@ -1,11 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types"
 import Card from "./Card";
 import styles from "./Login.module.css";
 
 const Login = (props) => {
   return (
     <Card>
-      <container className={styles.container}>
+      <div className={styles.container}>
         <h1 className={styles.login}>Войти</h1>
         <form onSubmit={props.submitHandler} className={styles.form}>
           <label htmlFor="email">Email</label>
@@ -39,9 +40,14 @@ const Login = (props) => {
             </button>
           </p>
         </form>
-      </container>
+      </div>
     </Card>
   );
 };
+
+Login.propTypes = {
+  submitHandler: PropTypes.func,
+  signupHandler: PropTypes.func
+}
 
 export default Login;
