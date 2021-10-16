@@ -19,11 +19,11 @@ h1 {
   text-align: center;
   vertical-align: middle;
   height: 60px;
-  background: #fdbf5a;
   border-radius: 70px;
   font-size: 25px;
   margin-bottom: 33px;
 }
+
 
 .submitBtn:hover {
   background: #ffa842;
@@ -43,23 +43,12 @@ h1 {
   color: #fdbf5a;
 }
 
-input {
-  border-bottom: 2px solid #e4e4e4;
+.input {
   margin-bottom: 25px;
-  padding-bottom: 11px;
-  transition: border-bottom-color 200ms;
 }
 
-input:last-of-type {
+.lastInput {
   margin-bottom: 13px;
-}
-
-input:hover {
-  border-bottom: 2px solid rgba(0, 0, 0, 0.87);
-}
-
-input:focus {
-  border-bottom-color: #1473e6;
 }
 
 label {

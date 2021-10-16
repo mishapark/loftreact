@@ -1,9 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types"
-import { ReactComponent as Logo } from "./icons/logo.svg";
+import { ReactComponent as Logo } from "../../icons/logo.svg";
 import styles from "./Header.module.css";
+import { withAuth } from "../../AuthContext";
 
 const Header = (props) => {
+  const unauthenticate = () => {
+    props.logOut()
+  }
+
   return (
     <header>
       <div className={styles.logo}>
@@ -18,7 +23,7 @@ const Header = (props) => {
               onClick={props.routeHandler}
               name="map"
             >
-               Карта
+               Map
             </button>
           </li>
           <li className={styles.navButton}>
@@ -26,15 +31,15 @@ const Header = (props) => {
               onClick={props.routeHandler}
               name="profile"
             >
-              Профиль
+              Profile
             </button>
           </li>
           <li className={styles.navButton}>
             <button
-              onClick= {props.routeHandler}
+              onClick= {unauthenticate}
               name="login"
             >
-              Выйти
+              Logout
             </button>
           </li>
         </ul>
@@ -47,4 +52,4 @@ Header.propTypes = {
   routeHandler: PropTypes.func
 }
 
-export default Header;
+export const HeaderWithAuth = withAuth(Header);

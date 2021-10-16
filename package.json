@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
     "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "loft-taxi-mui-theme": "^1.2.0",
     "mapbox-gl": "^2.5.1",
     "normalize.css": "^8.0.1",
-    "react": "^17.0.2",
+    "react": "^16.9.0",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
@@ -39,7 +39,10 @@
     ]
   },
   "devDependencies": {
-    "cz-conventional-changelog": "^3.3.0"
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/react-hooks": "^7.0.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "react-test-renderer": "^16.9.0"
   },
   "config": {
     "commitizen": {
