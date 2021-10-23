@@ -6,24 +6,20 @@ import { ReactComponent as Logo } from "../../icons/bigLogo.svg";
 import styles from "./Home.module.css";
 
 const Home = () => {
-  const [signedUp, setSignedUp] = useState(true);
-
-  const signUp = () => {
-    setSignedUp(!signedUp);
-  };
+  const [isSignedUp, setIsSignedUp] = useState(true);
+  let form;
+  form = isSignedUp ? (
+    <LoginWithAuth switchForm={() => setIsSignedUp(false)} />
+  ) : (
+    <Signup switchForm={() => setIsSignedUp(true)}/>
+  );
 
   return (
     <div className={styles.container}>
       <div className={styles.logo}>
         <Logo />
       </div>
-      <div className={styles.cardContainer}>
-        {signedUp ? (
-          <LoginWithAuth signupHandler={signUp} />
-        ) : (
-          <Signup signupHandler={signUp} />
-        )}
-      </div>
+      <div className={styles.cardContainer}>{form}</div>
     </div>
   );
 };

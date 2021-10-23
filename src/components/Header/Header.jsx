@@ -1,13 +1,17 @@
 import React from "react";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 import { ReactComponent as Logo } from "../../icons/logo.svg";
 import styles from "./Header.module.css";
-import { withAuth } from "../../AuthContext";
+
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { logOut } from "../../modules/server";
 
 const Header = (props) => {
   const unauthenticate = () => {
-    props.logOut()
-  }
+    localStorage.clear();
+    props.logOut();
+  };
 
   return (
     <header>
@@ -19,28 +23,19 @@ const Header = (props) => {
       <nav>
         <ul className={styles.nav}>
           <li className={styles.navButton}>
-            <button
-              onClick={props.routeHandler}
-              name="map"
-            >
-               Map
-            </button>
+            <Link to="/map" name="map">
+              Map
+            </Link>
           </li>
           <li className={styles.navButton}>
-            <button
-              onClick={props.routeHandler}
-              name="profile"
-            >
+            <Link to="/profile" name="profile">
               Profile
-            </button>
+            </Link>
           </li>
           <li className={styles.navButton}>
-            <button
-              onClick= {unauthenticate}
-              name="login"
-            >
+            <Link to="/" onClick={unauthenticate} name="login">
               Logout
-            </button>
+            </Link>
           </li>
         </ul>
       </nav>
@@ -49,7 +44,7 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
-  routeHandler: PropTypes.func
-}
+  routeHandler: PropTypes.func,
+};
 
-export const HeaderWithAuth = withAuth(Header);
+export const HeaderWithAuth = connect(null, { logOut })(Header);

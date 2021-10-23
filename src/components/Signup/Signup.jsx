@@ -53,7 +53,7 @@ const Signup = (props) => {
             <Link
               className={styles.signup}
               type="button"
-              onClick={props.signupHandler}
+              onClick={props.switchForm}
             >
               Login
             </Link>
