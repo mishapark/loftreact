@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import CreditCard from "../CreditCard/CreditCard";
+import styles from "./Profile.module.css"
 
 const Profile = () => {
-    return (
-        <h1>Profile</h1>
-    )
-}
+  return (
+    <div className={styles.container}>
+        <CreditCard/>
+    </div>
+  );
+};
 
 export default Profile;

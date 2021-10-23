@@ -3,17 +3,22 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { AuthProvider } from "./AuthContext";
+
 import { StylesProvider, MuiThemeProvider } from "@material-ui/core/styles";
 import { theme } from "loft-taxi-mui-theme";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import createAppStore from "./store";
 
 ReactDOM.render(
   <React.StrictMode>
     <StylesProvider injectFirst>
       <MuiThemeProvider theme={theme}>
-        <AuthProvider>
-          <App />
-        </AuthProvider>
+        <Provider store={createAppStore()}>
+          <BrowserRouter>
+              <App />
+          </BrowserRouter>
+        </Provider>
       </MuiThemeProvider>
     </StylesProvider>
   </React.StrictMode>,

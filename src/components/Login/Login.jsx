@@ -2,21 +2,26 @@ import React from "react";
 import PropTypes from "prop-types";
 import Card from "../Card/Card";
 import styles from "./Login.module.css";
-import { withAuth } from "../../AuthContext";
+
 import { Button, Input, Link } from "@material-ui/core/";
+import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import { authenticate } from "../../modules/server";
 
 const Login = (props) => {
-  const authenticate = (event) => {
+  const history = useHistory();
+  const logIn = (event) => {
     event.preventDefault();
     const { email, password } = event.target;
-    props.logIn(email.value, password.value);
+    props.authenticate(email.value, password.value);
+    history.push("/map");
   };
 
   return (
     <Card>
       <div className={styles.container}>
         <h1 className={styles.login}>Login</h1>
-        <form onSubmit={authenticate} className={styles.form}>
+        <form onSubmit={logIn} className={styles.form}>
           <label htmlFor="email">Email</label>
           <Input
             type="email"
@@ -37,7 +42,9 @@ const Login = (props) => {
             className={styles.lastInput}
             required
           />
-          <Link className={styles.forgetPsd}>Forgot password?</Link>
+          <Link href="/#" className={styles.forgetPsd}>
+            Forgot password?
+          </Link>
           <Button
             type="submit"
             variant="contained"
@@ -51,7 +58,7 @@ const Login = (props) => {
             <Link
               className={styles.signup}
               type="button"
-              onClick={props.signupHandler}
+              onClick={props.switchForm}
             >
               Sign Up
             </Link>
@@ -67,4 +74,4 @@ Login.propTypes = {
   signupHandler: PropTypes.func,
 };
 
-export const LoginWithAuth = withAuth(Login);
+export const LoginWithAuth = connect(null, {authenticate})(Login);
