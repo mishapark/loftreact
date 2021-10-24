@@ -57,7 +57,6 @@ const CreditCard = (props) => {
                 placeholder="Enter name"
                 className={styles.input}
                 required
-                onChange={(e) => setCardName(e.target.value)}
               />
               <label htmlFor="cardNumber" className={styles.label}>
                 Card Number
@@ -70,7 +69,6 @@ const CreditCard = (props) => {
                 placeholder="Enter card number"
                 className={styles.input}
                 required
-                onChange={(e) => setCardNum(e.target.value)}
               />
               <div className={styles.dateCvc}>
                 <div>
@@ -86,7 +84,6 @@ const CreditCard = (props) => {
                     className={styles.lastInput}
                     style={{ marginRight: "35px" }}
                     required
-                    onChange={(e) => setCardDate(e.target.value)}
                   />
                 </div>
                 <div>

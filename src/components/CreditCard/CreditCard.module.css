@@ -63,7 +63,8 @@
 }
 
 .lastInput {
-    display: block;
+  display: block;
+  font-weight: bold;
 }
 
 .cardImage {
@@ -81,7 +82,7 @@
 }
 
 .cardNumber {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .label {
