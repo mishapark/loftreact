@@ -7,7 +7,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/user-event": "^12.1.10",
     "loft-taxi-mui-theme": "^1.2.0",
-    "mapbox-gl": "^2.5.1",
+    "mapbox-gl": "^1.13.0",
     "normalize.css": "^8.0.1",
     "react": "^16.9.0",
     "react-dom": "^17.0.2",
@@ -16,7 +16,8 @@
     "react-scripts": "4.0.3",
     "redux": "^4.1.1",
     "redux-actions": "^2.6.5",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "worker-loader": "^3.0.8"
   },
   "scripts": {
     "start": "react-scripts start",
