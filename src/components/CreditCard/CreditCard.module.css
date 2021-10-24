@@ -1,0 +1,92 @@
+.container {
+  padding: 60px 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.submitBtn {
+  text-align: center;
+  vertical-align: middle;
+  height: 60px;
+  border-radius: 70px;
+  font-size: 25px;
+  padding: 18px 125px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 36px;
+  margin-bottom: 13px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #7b7b7b;
+  margin-bottom: 50px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.formBody {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 50px;
+  flex: 1;
+}
+
+.cardImage {
+  width: 50%;
+}
+
+.dateCvc {
+  display: flex;
+}
+
+.input {
+  margin-bottom: 25px;
+  width: 100%;
+  font-weight: bold;
+}
+
+.lastInput {
+  display: block;
+  font-weight: bold;
+}
+
+.cardImage {
+  padding: 18px 18px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.spaceRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardNumber {
+  font-weight: bold;
+}
+
+.label {
+  font-weight: normal;
+  color: #828282;
+  display: block;
+}
