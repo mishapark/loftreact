@@ -14,9 +14,11 @@ const Login = (props) => {
     event.preventDefault();
     const { email, password } = event.target;
     props.authenticate({"email": email.value, "password": password.value});
-    history.push("/map");
-    console.log(props.isLoggedIn);
   };
+
+  if (props.isLoggedIn) {
+    history.push("/map");
+  }
 
   return (
     <Card>
