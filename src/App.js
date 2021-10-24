@@ -1,7 +1,7 @@
 import React from "react";
 import { HeaderWithAuth } from "./components/Header/Header";
 import Map from "./components/Map/Map";
-import Profile from "./components/Profile/Profile";
+import { ProfileWithUpdate } from "./components/Profile/Profile";
 import Home from "./components/Home/Home";
 
 import { Private } from "./HOCS/PrivateRoute/PrivateRoute";
@@ -26,7 +26,7 @@ class App extends React.Component {
           component={() => (
             <>
               <HeaderWithAuth />
-              <Profile />
+              <ProfileWithUpdate />
             </>
           )}
         />

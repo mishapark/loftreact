@@ -1,11 +1,21 @@
 import { combineReducers } from "redux";
 import { logIn, logOut } from "./actions";
 
-const email = localStorage.getItem("email");
-const password = localStorage.getItem("email");
+const token = localStorage.getItem("token");
 
 const initialState = {
-  isLoggedIn: (email && password) ? true : false,
+  isLoggedIn: token ? true : false,
+};
+
+const cardInfo = {
+  cardNumber: "",
+  expiryDate: "",
+  cardName: "",
+  cvc: "",
+};
+
+const cardUpdate = {
+  isUpdated: false,
 };
 
 const auth = (state = initialState, action) => {
@@ -17,6 +27,31 @@ const auth = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
 
-export default combineReducers({auth})
+const card = (state = cardInfo, action) => {
+  switch (action.type) {
+    case "GET_CARD_DATA":
+      return {
+        cardNumber: action.payload.cardNumber,
+        expiryDate: action.payload.expiryDate,
+        cardName: action.payload.cardName,
+        cvc: action.payload.cvc,
+      };
+    default:
+      return state;
+  }
+};
+
+const profileCard = (state = cardUpdate, action) => {
+  switch (action.type) {
+    case "SHOW_UPDATED_CARD":
+      return {
+        isUpdated: true,
+      };
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({ auth, card, profileCard });

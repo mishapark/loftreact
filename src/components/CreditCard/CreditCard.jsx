@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../Card/Card";
 import { Button, Input } from "@material-ui/core/";
 import { ReactComponent as TaxiLogo } from "../../icons/smallLogo.svg";
@@ -6,16 +6,42 @@ import { ReactComponent as Chip } from "../../icons/chip.svg";
 import { ReactComponent as MC } from "../../icons/MC.svg";
 import styles from "./CreditCard.module.css";
 
-const CreditCard = () => {
-  const [cardNum, setCardNum] = useState("0000 0000 0000 0000");
-  const [cardDate, setCardDate] = useState("00/00");
+import { saveCard, populateCard } from "../../modules/server";
+import { connect } from "react-redux";
+
+const CreditCard = (props) => {
+  const [cardNum, setCardNum] = useState(props.card.cardNumber);
+  const [cardDate, setCardDate] = useState(props.card.expiryDate);
+  const [cardName, setCardName] = useState(props.card.cardName);
+
+  useEffect(() => {
+    async function fetchData() {
+      await props.populateCard();
+    }
+    fetchData();
+    setCardNum(props.card.cardNumber);
+  }, []);
+
+  const saveCard = (event) => {
+    event.preventDefault();
+    const { name, cardNumber, date, cvc } = event.target;
+    const cardInfo = {
+      cardNumber: cardNumber,
+      expiryDate: date,
+      cardName: name,
+      cvc: cvc,
+      token: localStorage.getItem("token"),
+    };
+    props.saveCard(cardInfo);
+    props.updateForm();
+  };
 
   return (
-    <Card style={{width: "770px"}}>
+    <Card style={{ width: "770px" }}>
       <div className={styles.container}>
         <h1 className={styles.title}>Profile</h1>
         <div className={styles.subtitle}>Enter card details</div>
-        <form className={styles.form}>
+        <form onSubmit={saveCard} className={styles.form}>
           <div className={styles.formBody}>
             <div className={styles.details}>
               <label htmlFor="name" className={styles.label}>
@@ -29,6 +55,7 @@ const CreditCard = () => {
                 placeholder="Enter name"
                 className={styles.input}
                 required
+                onChange={(e) => setCardName(e.target.value)}
               />
               <label htmlFor="cardNumber" className={styles.label}>
                 Card Number
@@ -80,13 +107,14 @@ const CreditCard = () => {
               <div className={styles.cardImage}>
                 <div className={styles.spaceRow}>
                   <TaxiLogo />
-                  <div className={styles.cardDate}>{cardDate}</div>
+                  <div>{cardDate}</div>
                 </div>
                 <div className={styles.startRow}>
                   <div className={styles.cardNumber}>{cardNum}</div>
                 </div>
                 <div className={styles.spaceRow}>
                   <Chip />
+                  <div>{cardName}</div>
                   <MC />
                 </div>
               </div>
@@ -106,4 +134,7 @@ const CreditCard = () => {
   );
 };
 
-export default CreditCard;
+export const Credit = connect((state) => ({ card: state.card }), {
+  saveCard,
+  populateCard,
+})(CreditCard);

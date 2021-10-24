@@ -13,8 +13,9 @@ const Login = (props) => {
   const logIn = (event) => {
     event.preventDefault();
     const { email, password } = event.target;
-    props.authenticate(email.value, password.value);
+    props.authenticate({"email": email.value, "password": password.value});
     history.push("/map");
+    console.log(props.isLoggedIn);
   };
 
   return (
@@ -74,4 +75,4 @@ Login.propTypes = {
   signupHandler: PropTypes.func,
 };
 
-export const LoginWithAuth = connect(null, {authenticate})(Login);
+export const LoginWithAuth = connect((state) => ({ isLoggedIn: state.auth.isLoggedIn }), {authenticate})(Login);

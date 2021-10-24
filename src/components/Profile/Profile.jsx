@@ -1,13 +1,26 @@
-import React from "react";
-import CreditCard from "../CreditCard/CreditCard";
-import styles from "./Profile.module.css"
+import React, { useState } from "react";
+import { Credit } from "../CreditCard/CreditCard";
+import CardNotification from "../CardNotification/CardNotification";
+import styles from "./Profile.module.css";
+import { connect } from "react-redux";
 
-const Profile = () => {
+const Profile = (props) => {
+  const [isUpdated, setIsUpdated] = useState(props.isUpdated);
+  const updateForm = () => {
+    setIsUpdated(!isUpdated);
+  };
+
   return (
     <div className={styles.container}>
-        <CreditCard/>
+      {isUpdated ? (
+        <Credit updateForm={updateForm} />
+      ) : (
+        <CardNotification updateForm={updateForm} />
+      )}
     </div>
   );
 };
 
-export default Profile;
+export const ProfileWithUpdate = connect((state) => ({
+  isUpdated: state.profileCard,
+}))(Profile);
