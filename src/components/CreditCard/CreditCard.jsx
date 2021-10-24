@@ -20,7 +20,9 @@ const CreditCard = (props) => {
     }
     fetchData();
     setCardNum(props.card.cardNumber);
-  }, []);
+    setCardDate(props.card.expiryDate);
+    setCardName(props.card.cardName);
+  }, [props.card]);
 
   const saveCard = (event) => {
     event.preventDefault();
