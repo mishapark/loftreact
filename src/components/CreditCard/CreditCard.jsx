@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Card from "../Card/Card";
 import { Button, Input } from "@material-ui/core/";
 import { ReactComponent as TaxiLogo } from "../../icons/smallLogo.svg";
@@ -6,23 +6,14 @@ import { ReactComponent as Chip } from "../../icons/chip.svg";
 import { ReactComponent as MC } from "../../icons/MC.svg";
 import styles from "./CreditCard.module.css";
 
-import { saveCard, populateCard } from "../../modules/server";
+import { saveCard, populateCard } from "../../modules/card";
 import { connect } from "react-redux";
 
 const CreditCard = (props) => {
-  const [cardNum, setCardNum] = useState(props.card.cardNumber);
-  const [cardDate, setCardDate] = useState(props.card.expiryDate);
-  const [cardName, setCardName] = useState(props.card.cardName);
-
+  const populate = props.populateCard
   useEffect(() => {
-    async function fetchData() {
-      await props.populateCard();
-    }
-    fetchData();
-    setCardNum(props.card.cardNumber);
-    setCardDate(props.card.expiryDate);
-    setCardName(props.card.cardName);
-  }, [props.card]);
+    populate()
+  }, [populate]);
 
   const saveCard = (event) => {
     event.preventDefault();
@@ -106,14 +97,14 @@ const CreditCard = (props) => {
               <div className={styles.cardImage}>
                 <div className={styles.spaceRow}>
                   <TaxiLogo />
-                  <div>{cardDate}</div>
+                  <div>{props.card.expiryDate}</div>
                 </div>
                 <div className={styles.startRow}>
-                  <div className={styles.cardNumber}>{cardNum}</div>
+                  <div className={styles.cardNumber}>{props.card.cardNumber}</div>
                 </div>
                 <div className={styles.spaceRow}>
                   <Chip />
-                  <div>{cardName}</div>
+                  <div>{props.card.cardName}</div>
                   <MC />
                 </div>
               </div>

@@ -1,9 +1,11 @@
 import { createStore, compose, applyMiddleware } from "redux";
-import rootReducer, { authMiddleware, cardMiddleware } from "./modules/server";
+import roorReducer from "./modules/reducers"
+import { authMiddleware } from "./modules/auth";
+import { cardMiddleware } from "./modules/card";
 
 const createAppStore = () => {
   const store = createStore(
-    rootReducer,
+    roorReducer,
     compose(
       applyMiddleware(authMiddleware, cardMiddleware),
       window.__REDUX_DEVTOOLS_EXTENSION__
