@@ -5,7 +5,7 @@ import styles from "./Header.module.css";
 
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { logOut } from "../../modules/server";
+import { logOut } from "../../modules/auth";
 
 const Header = (props) => {
   const unauthenticate = () => {

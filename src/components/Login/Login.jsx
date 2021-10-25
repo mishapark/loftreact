@@ -6,7 +6,7 @@ import styles from "./Login.module.css";
 import { Button, Input, Link } from "@material-ui/core/";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import { authenticate } from "../../modules/server";
+import { authenticate } from "../../modules/auth";
 
 const Login = (props) => {
   const history = useHistory();
