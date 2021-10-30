@@ -18,6 +18,13 @@ export const card = (state = cardInfo, action) => {
         cardName: action.payload.cardName,
         cvc: action.payload.cvc,
       };
+    case "CLEAR_CARD_DATA":
+      return {
+        cardNumber: "",
+        expiryDate: "",
+        cardName: "",
+        cvc: "",
+      };
     default:
       return state;
   }

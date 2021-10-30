@@ -6,15 +6,10 @@ import { ReactComponent as Chip } from "../../icons/chip.svg";
 import { ReactComponent as MC } from "../../icons/MC.svg";
 import styles from "./CreditCard.module.css";
 
-import { saveCard, populateCard } from "../../modules/card";
+import { saveCard } from "../../sagas/card/actions";
 import { connect } from "react-redux";
 
 const CreditCard = (props) => {
-  const populate = props.populateCard
-  useEffect(() => {
-    populate()
-  }, [populate]);
-
   const saveCard = (event) => {
     event.preventDefault();
     const { name, cardNumber, date, cvc } = event.target;
@@ -28,6 +23,33 @@ const CreditCard = (props) => {
     props.saveCard(cardInfo);
     props.updateForm();
   };
+
+  let sideCard = null;
+  if (!props.card.cardName) {
+    sideCard = (
+      <div className={styles.loaderContainer}>
+        <div className={styles.loader}></div>
+        <div className={styles.loaderText}>Enter card details please</div>
+      </div>
+    );
+  } else {
+    sideCard = (
+      <>
+        <div className={styles.spaceRow}>
+          <TaxiLogo />
+          <div>{props.card.expiryDate}</div>
+        </div>
+        <div className={styles.startRow}>
+          <div className={styles.cardNumber}>{props.card.cardNumber}</div>
+        </div>
+        <div className={styles.spaceRow}>
+          <Chip />
+          <div>{props.card.cardName}</div>
+          <MC />
+        </div>
+      </>
+    );
+  }
 
   return (
     <Card style={{ width: "770px" }}>
@@ -94,20 +116,7 @@ const CreditCard = (props) => {
               </div>
             </div>
             <Card style={{ flex: 1 }}>
-              <div className={styles.cardImage}>
-                <div className={styles.spaceRow}>
-                  <TaxiLogo />
-                  <div>{props.card.expiryDate}</div>
-                </div>
-                <div className={styles.startRow}>
-                  <div className={styles.cardNumber}>{props.card.cardNumber}</div>
-                </div>
-                <div className={styles.spaceRow}>
-                  <Chip />
-                  <div>{props.card.cardName}</div>
-                  <MC />
-                </div>
-              </div>
+              <div className={styles.cardImage}>{sideCard}</div>
             </Card>
           </div>
           <Button
@@ -124,7 +133,6 @@ const CreditCard = (props) => {
   );
 };
 
-export const Credit = connect((state) => ({ card: state.card }), {
-  saveCard,
-  populateCard,
-})(CreditCard);
+export const Credit = connect((state) => ({ card: state.card }), { saveCard })(
+  CreditCard
+);

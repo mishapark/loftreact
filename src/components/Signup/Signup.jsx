@@ -1,15 +1,33 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Card from "../Card/Card";
 import styles from "../Login/Login.module.css";
 import { Button, Input, Link } from "@material-ui/core/";
+import { connect } from "react-redux";
+import { signUp } from "../../sagas/registrationSaga/actions";
+import { useHistory } from "react-router-dom";
 
-const Signup = (props) => {
+const SignupComponent = (props) => {
+  const history = useHistory();
+  const signup = (event) => {
+    event.preventDefault();
+    const { email, fname, lname, password } = event.target;
+    props.signUp({
+      email: email.value,
+      password: password.value,
+      name: fname.value,
+      surname: lname.value,
+    });
+  };
+
+  if (props.isLoggedIn) {
+    history.push("/map");
+  }
+
   return (
     <Card>
       <div className={styles.container}>
         <h1 className={styles.login}>Signup </h1>
-        <form onSubmit={props.submitHandler} className={styles.form}>
+        <form onSubmit={signup} className={styles.form}>
           <label htmlFor="email">Email* </label>
           <Input
             type="email"
@@ -20,13 +38,23 @@ const Signup = (props) => {
             className={styles.input}
             required
           />
-          <label htmlFor="name">What is you name?*</label>
+          <label htmlFor="name">What is your first name?*</label>
           <Input
             type="text"
-            name="name"
-            id="name"
+            name="fname"
+            id="fname"
             size="28"
-            placeholder="John Doe"
+            placeholder="John"
+            className={styles.input}
+            required
+          />
+          <label htmlFor="name">What is your last name?*</label>
+          <Input
+            type="text"
+            name="lname"
+            id="lname"
+            size="28"
+            placeholder="Doe"
             className={styles.input}
             required
           />
@@ -64,9 +92,7 @@ const Signup = (props) => {
   );
 };
 
-Signup.propTypes = {
-  submitHandler: PropTypes.func,
-  signupHandler: PropTypes.func,
-};
-
-export default Signup;
+export const Signup = connect(
+  (state) => ({ isLoggedIn: state.auth.isLoggedIn }),
+  { signUp }
+)(SignupComponent);

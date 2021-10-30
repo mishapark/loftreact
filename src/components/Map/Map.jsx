@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
+import { TaxiForm } from "../TaxiForm/TaxiForm";
 import mapboxgl from "mapbox-gl";
 import styles from "./Map.module.css";
+
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZWFzdDExNiIsImEiOiJja3VvcW90c28wa2dhMzJydGN0amV4MGVmIn0.FmdS3YF2BlTPeVOu6GBeOA";
@@ -19,7 +21,7 @@ const Map = () => {
       style: "mapbox://styles/mapbox/light-v10",
       center: [lng, lat],
       zoom: zoom,
-      attributionControl: false
+      attributionControl: false,
     });
   });
 
@@ -34,10 +36,8 @@ const Map = () => {
 
   return (
     <>
-      <div
-        ref={mapContainer}
-        className={styles.mapContainer}
-      />
+      <TaxiForm />
+      <div ref={mapContainer} className={styles.mapContainer} />
     </>
   );
 };

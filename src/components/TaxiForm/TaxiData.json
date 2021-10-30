@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Standard",
+    "price": "150₽",
+    "img": "bmw.png"
+  },
+  {
+    "id": 2,
+    "name": "Premium",
+    "price": "250₽",
+    "img": "tesla.png"
+  },
+  {
+    "id": 3,
+    "name": "Business",
+    "price": "300₽",
+    "img": "benz.png"
+  }
+]

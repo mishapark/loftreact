@@ -1,0 +1,30 @@
+.container {
+  padding: 12px;
+  height: 100%;
+}
+
+.name {
+  margin-bottom: 8px;
+}
+.subtitle {
+  font-size: 11px;
+  color: #828282;
+}
+.price {
+  font-size: 24px;
+  margin-bottom: 13px;
+}
+
+.imgContainer {
+  width: 90px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.imgContainer img {
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
