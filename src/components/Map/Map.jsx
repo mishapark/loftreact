@@ -27,7 +27,7 @@ const MapComponent = (props) => {
       zoom: zoom,
       attributionControl: false,
     });
-  });
+  }, []);
 
   useEffect(() => {
     if (!map.current) return; // wait for map to initialize
@@ -36,7 +36,20 @@ const MapComponent = (props) => {
       setLat(map.current.getCenter().lat.toFixed(4));
       setZoom(map.current.getZoom().toFixed(2));
     });
-  });
+  }, []);
+
+  useEffect(() => {
+    if (!map.current) return;
+    if (props.coordinates.coordinates.length) {
+      if (map.current.getSource("route")) {
+        map.current.removeSource("route");
+      }
+      if (map.current.getLayer("route")) {
+        map.current.removeLayer("route");
+      }
+      drawRoute(map.current, props.coordinates.coordinates);
+    }
+  }, [props.coordinates.coordinates]);
 
   const drawRoute = (map, coordinates) => {
     map.flyTo({
@@ -74,12 +87,20 @@ const MapComponent = (props) => {
     const { from, to } = event.target;
     props.buildRoute({ from: from.value, to: to.value });
     setIsOrdered(true);
-    drawRoute(map.current, props.coordinates.coordinates);
   };
 
   const newOrderHandler = () => {
     setIsOrdered(false);
-    // map.current.removeLayer("route")
+    if (map.current.getSource("route")) {
+      map.current.removeSource("route");
+    }
+    if (map.current.getLayer("route")) {
+      map.current.removeLayer("route");
+    }
+    map.current.flyTo({
+      center: [30.33, 59.94],
+      zoom: 12,
+    });
   };
 
   return (
