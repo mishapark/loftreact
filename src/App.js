@@ -1,6 +1,6 @@
 import React from "react";
 import { HeaderWithAuth } from "./components/Header/Header";
-import Map from "./components/Map/Map";
+import { Map } from "./components/Map/Map";
 import { ProfileWithUpdate } from "./components/Profile/Profile";
 import Home from "./components/Home/Home";
 
