@@ -2,8 +2,14 @@ import React from "react";
 import Card from "../Card/Card";
 import { Button } from "@material-ui/core/";
 import styles from "./CrediCardNotificationtCard.module.css";
+import { populateCard } from "../../sagas/card/actions";
+import { connect } from "react-redux";
 
-const CardNotification = (props) => {
+const CardNotificationComponent = (props) => {
+  const clickHandler = () => {
+    props.updateForm();
+    props.populateCard();
+  };
   return (
     <Card>
       <div className={styles.container}>
@@ -16,13 +22,15 @@ const CardNotification = (props) => {
           className={styles.btn}
           variant="contained"
           color="primary"
-          onClick={props.updateForm}
+          onClick={clickHandler}
         >
-          Go back to card
+          Submit
         </Button>
       </div>
     </Card>
   );
 };
 
-export default CardNotification;
+export const CardNotification = connect(null, { populateCard })(
+  CardNotificationComponent
+);

@@ -1,18 +1,21 @@
 import { createStore, compose, applyMiddleware } from "redux";
-import roorReducer from "./modules/reducers"
-import { authMiddleware } from "./modules/auth";
-import { cardMiddleware } from "./modules/card";
+import rootReducer from "./sagas/reducers";
+import createSagaMiddleware from "@redux-saga/core";
+import { rootSaga } from "./sagas/rootSaga";
+
+const sagaMiddleware = createSagaMiddleware();
 
 const createAppStore = () => {
   const store = createStore(
-    roorReducer,
+    rootReducer,
     compose(
-      applyMiddleware(authMiddleware, cardMiddleware),
+      applyMiddleware(sagaMiddleware),
       window.__REDUX_DEVTOOLS_EXTENSION__
         ? window.__REDUX_DEVTOOLS_EXTENSION__()
         : (noop) => noop
     )
   );
+  sagaMiddleware.run(rootSaga);
   return store;
 };
 export default createAppStore;

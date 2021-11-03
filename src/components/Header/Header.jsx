@@ -5,11 +5,13 @@ import styles from "./Header.module.css";
 
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { logOut } from "../../modules/auth";
+import { logOut } from "../../sagas/auth/actions";
+import { clearCardData } from "../../sagas/card/actions";
 
 const Header = (props) => {
   const unauthenticate = () => {
     localStorage.clear();
+    props.clearCardData()
     props.logOut();
   };
 
@@ -47,4 +49,4 @@ Header.propTypes = {
   routeHandler: PropTypes.func,
 };
 
-export const HeaderWithAuth = connect(null, { logOut })(Header);
+export const HeaderWithAuth = connect(null, { logOut, clearCardData })(Header);

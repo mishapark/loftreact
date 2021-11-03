@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Credit } from "../CreditCard/CreditCard";
-import CardNotification from "../CardNotification/CardNotification";
+import { CardNotification } from "../CardNotification/CardNotification";
 import styles from "./Profile.module.css";
 import { connect } from "react-redux";
 

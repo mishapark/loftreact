@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { LoginWithAuth } from "../Login/Login";
-import Signup from "../Signup/Signup";
+import { Signup } from "../Signup/Signup";
 import { ReactComponent as Logo } from "../../icons/bigLogo.svg";
 
 import styles from "./Home.module.css";
@@ -11,7 +11,7 @@ const Home = () => {
   form = isSignedUp ? (
     <LoginWithAuth switchForm={() => setIsSignedUp(false)} />
   ) : (
-    <Signup switchForm={() => setIsSignedUp(true)}/>
+    <Signup switchForm={() => setIsSignedUp(true)} />
   );
 
   return (
